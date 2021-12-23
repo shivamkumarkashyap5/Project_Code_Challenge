@@ -1,0 +1,64 @@
+login 
+
+
+
+
+
+export class CompanyLoginComponent implements OnInit {
+  userModel= new User("","");
+ 
+ 
+  msg:string="";
+  msgg:string="";
+  errmsg:string="";
+ 
+  constructor(private authService: AuthService, private router: Router, private app:AppComponent) { }
+  
+  ngOnInit(): void {
+
+  }
+
+  
+
+  login(userModel:any){
+
+   console.log(this.userModel);
+
+    this.authService.logInUserFromRemote(this.userModel).subscribe(
+      (data:{})=>{
+     
+      
+      console.log("response"+data);
+      this.msgg="response"+data;
+      
+     if(this.msgg!="responsefalse"){
+      console.log(this.msgg);
+  // this.checkStatus();
+      this.router.navigateByUrl('/company-list');
+     
+     }
+      else{
+        this.errmsg="Invalid username/password";
+      }
+      
+  },
+
+  (error:any)=>{ console.log("response from error"),
+  this.msg=error.error;
+  
+
+  }
+  
+  )
+ 
+  }
+/*
+  checkStatus(){
+this.app.checkStatus;
+console.log(this.app.checkStatus);
+  }
+ 
+  
+ */
+
+} 

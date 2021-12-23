@@ -1,0 +1,34 @@
+
+<h1 style="text-align:center">
+   <!-- {{userModel|json}}-->
+  </h1>
+  <div class="login">
+    <h2 class="login-header">Let's get started by login</h2>
+    <form #loginForm="ngForm" class="login-container" role="form" #f="ngForm" (ngSubmit)="f.form.valid && login(userModel)">
+  <span style="color: red;">Fields marked with * are mandatory</span>
+  <menu>
+  <li *ngIf="email.invalid && f.submitted">  
+    <span style="color: red;">Email is required</span>  
+  </li>
+  <li *ngIf="password.invalid && f.submitted">  
+    <span style="color: red;">Password is required</span>  
+  </li>
+<span style='color: red'>{{errmsg}}</span></menu>
+        <label>Email address<span style="color: red;">*</span></label>
+        <input type="email"  placeholder="Email" name="email" [(ngModel)]="userModel.email" required [ngClass]="{'invalid-data': email.invalid && f.submitted, 'valid-data': email.valid && f.submitted}" #email="ngModel">
+      
+  
+     
+        <label>Password<span style="color: red;">*</span></label>
+        <input type="password" placeholder="Password" name="password" [(ngModel)]="userModel.password" required [ngClass]="{'invalid-data': password.invalid && f.submitted, 'valid-data': password.valid && f.submitted}" #password="ngModel">
+      
+  
+      
+  
+      <p>
+        <input type="submit" value="Submit" id="btn">
+      </p>
+      
+    </form>
+  </div>
+ 
